@@ -16,7 +16,7 @@ async function processLineByLine() {
 		//console.log(`Line from file: ${line}`);
 	}
 
-	console.log(draftArray);
+	console.log('The given array is ', draftArray);
 	NoOfLevels = draftArray[0][0];
 	let ArrayOfGreaterNumbers = [];
 	let Total = 0;
@@ -46,8 +46,8 @@ async function processLineByLine() {
 			Total = sum;
 			ArrayOfGreaterNumbers = [ ...finalNumbers ];
 		}
-		console.log(Total);
-		console.log(ArrayOfGreaterNumbers);
+		console.log('The highest total is', Total);
+		console.log('The array which form the highest total is', ArrayOfGreaterNumbers);
 	}
 	//SumOfRightDiagnolElements();
 	function SumOfLeftDiagnolElements() {
