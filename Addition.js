@@ -18,8 +18,8 @@ async function processLineByLine() {
 
 	console.log(draftArray);
 	NoOfLevels = draftArray[0][0];
-	let ArrayOfGreaterNumbers;
-
+	let ArrayOfGreaterNumbers = [];
+	let Total = 0;
 	function SumOfRightDiagnolElements() {
 		let sum = 0;
 		let finalNumbers = [];
@@ -41,13 +41,15 @@ async function processLineByLine() {
 				sum = tempSum;
 				finalNumbers = [ ...TempNumbers ];
 			}
-			//console.log(tempSum);
-			// console.log(tempSum);
 		}
-		console.log(sum);
-		console.log(finalNumbers);
+		if (Total < sum) {
+			Total = sum;
+			ArrayOfGreaterNumbers = [ ...finalNumbers ];
+		}
+		console.log(Total);
+		console.log(ArrayOfGreaterNumbers);
 	}
-	SumOfRightDiagnolElements();
+	//SumOfRightDiagnolElements();
 	function SumOfLeftDiagnolElements() {
 		let sum = 0;
 		let finalNumbers = [];
@@ -70,16 +72,25 @@ async function processLineByLine() {
 			}
 			tempSum += commonNumber;
 			TempNumbers.unshift(commonNumber);
-			console.log(tempSum);
+
 			if (sum < tempSum) {
 				sum = tempSum;
 				finalNumbers = [ ...TempNumbers ];
 			}
 		}
-		console.log(sum);
-
-		console.log(finalNumbers);
+		//console.log(sum);
+		//console.log(finalNumbers);
+		if (Total < sum) {
+			Total = sum;
+			ArrayOfGreaterNumbers = [ ...finalNumbers ];
+		}
 	}
-	//SumOfLeftDiagnolElements();
+
+	try {
+		let leftDiagnolRunFirst = await SumOfLeftDiagnolElements();
+		let RightDiagnolNow = await SumOfRightDiagnolElements();
+	} catch (error) {
+		console.log(error);
+	}
 }
 processLineByLine();
