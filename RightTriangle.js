@@ -9,7 +9,7 @@ const readline = require('readline').createInterface({
 // form a triangle
 // So we have to first find out the maximum number that could be in the triangle.
 // in the example 15 was that number .
-// And we shud also find out how much level deep our starting number 1 is.
+// And we shud also find out how much level deep our starting number 1 is.In the eg. it is 5
 //TODO
 //1. Find max number(n)
 //2. find level deep (i)
@@ -60,9 +60,8 @@ function PrintTriangle() {
 		readline.close();
 	});
 }
-
 PrintTriangle();
-// Our idea to print triangle of max number 105 :p
+// Our idea to print triangle of number 105
 // 1
 // 2 3
 // 4 5 6
