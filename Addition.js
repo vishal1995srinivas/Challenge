@@ -44,11 +44,9 @@ async function processLineByLine() {
 				if (diff < 0) {
 					diff = 0;
 				}
-
 				let RequiredNumber = parseInt(draftArray[i][diff]);
 				//Add to sum
 				tempSum += RequiredNumber;
-
 				TempNumbers.push(RequiredNumber);
 				//console.log(RequiredNumber, length);
 			}
@@ -68,16 +66,20 @@ async function processLineByLine() {
 	}
 	//SumOfRightDiagnolElements();
 	function SumOfLeftDiagnolElements() {
+		//Observing the pattern 1[0], 2[0], 3[0], 4[0] then 1[0], 2[1], 3[1], 4[1]
+		// 1[0], 2[1], 3[2], 4[2]. -> 1[0] is common j value is incrementing. take care when length == j
 		let sum = 0;
 		let finalNumbers = [];
-		let commonNumber = parseInt(draftArray[1][0]);
+		let commonNumber = parseInt(draftArray[1][0]); //comon that gets added to every no.
 		for (let j = 0; j < NoOfLevels - 1; j++) {
 			let tempSum = 0,
 				a,
 				TempNumbers = [];
 			for (let i = 2; i <= NoOfLevels; i++) {
+				// As we took out common no , we can start from 2
 				let length = draftArray[i].length;
 				if (length == j) {
+					// important check here. in eg 2[2] is NaN
 					let diff = length - 1;
 					a = parseInt(draftArray[i][diff]);
 					TempNumbers.push(a);
@@ -89,7 +91,7 @@ async function processLineByLine() {
 			}
 			tempSum += commonNumber;
 			TempNumbers.unshift(commonNumber);
-
+			//update
 			if (sum < tempSum) {
 				sum = tempSum;
 				finalNumbers = [ ...TempNumbers ];
@@ -97,16 +99,18 @@ async function processLineByLine() {
 		}
 		//console.log(sum);
 		//console.log(finalNumbers);
+		//Check with total
 		if (Total < sum) {
 			Total = sum;
 			ArrayOfGreaterNumbers = [ ...finalNumbers ];
 		}
 	}
+	//Controlling which one to perform first.As  We have single source of truth
 	try {
 		let leftDiagnolRunFirst = await SumOfLeftDiagnolElements();
 		let RightDiagnolNow = await SumOfRightDiagnolElements();
 	} catch (error) {
-		console.log(error);
+		console.log(error); //Will not execute at all
 	}
 }
 processLineByLine();
