@@ -18,6 +18,7 @@ async function processLineByLine() {
 
 	console.log(draftArray);
 	NoOfLevels = draftArray[0][0];
+
 	// function SumOfRightDiagnolElements() {
 	// 	let sum = 0;
 	// 	for (let j = 1; j < NoOfLevels; j++) {
@@ -43,27 +44,36 @@ async function processLineByLine() {
 	//SumOfRightDiagnolElements();
 	function SumOfLeftDiagnolElements() {
 		let sum = 0;
+		let finalNumbers = [];
+
 		let commonNumber = parseInt(draftArray[1][0]);
 		for (let j = 0; j < NoOfLevels - 1; j++) {
 			let tempSum = 0,
-				a;
+				a,
+				TempNumbers = [];
 			for (let i = 2; i <= NoOfLevels; i++) {
 				let length = draftArray[i].length;
 				if (length == j) {
 					let diff = length - 1;
 					a = parseInt(draftArray[i][diff]);
+					TempNumbers.push(a);
 				} else {
 					a = parseInt(draftArray[i][j]);
+					TempNumbers.push(a);
 				}
 				tempSum += a;
 			}
 			tempSum += commonNumber;
+			TempNumbers.unshift(commonNumber);
 			console.log(tempSum);
 			if (sum < tempSum) {
 				sum = tempSum;
+				finalNumbers = [ ...TempNumbers ];
 			}
 		}
 		console.log(sum);
+
+		console.log(finalNumbers);
 	}
 	SumOfLeftDiagnolElements();
 }
