@@ -18,28 +18,53 @@ async function processLineByLine() {
 
 	console.log(draftArray);
 	NoOfLevels = draftArray[0][0];
-	function SumOfRightDiagnolElements() {
+	// function SumOfRightDiagnolElements() {
+	// 	let sum = 0;
+	// 	for (let j = 1; j < NoOfLevels; j++) {
+	// 		let tempSum = 0;
+	// 		for (let i = 1; i <= NoOfLevels; i++) {
+	// 			let length = draftArray[i].length;
+	// 			let diff = length - j;
+	// 			if (diff < 0) {
+	// 				diff = 0;
+	// 			}
+	// 			let a = parseInt(draftArray[i][diff]);
+	// 			tempSum += a;
+	// 			console.log(a, length);
+	// 		}
+	// 		if (sum < tempSum) {
+	// 			sum = tempSum;
+	// 		}
+	// 		console.log(tempSum);
+	// 		// console.log(tempSum);
+	// 	}
+	// 	console.log(sum);
+	// }
+	//SumOfRightDiagnolElements();
+	function SumOfLeftDiagnolElements() {
 		let sum = 0;
-		for (let j = 1; j < NoOfLevels; j++) {
-			let tempSum = 0;
-			for (let i = 1; i <= NoOfLevels; i++) {
+		let commonNumber = parseInt(draftArray[1][0]);
+		for (let j = 0; j < NoOfLevels - 1; j++) {
+			let tempSum = 0,
+				a;
+			for (let i = 2; i <= NoOfLevels; i++) {
 				let length = draftArray[i].length;
-				let diff = length - j;
-				if (diff < 0) {
-					diff = 0;
+				if (length == j) {
+					let diff = length - 1;
+					a = parseInt(draftArray[i][diff]);
+				} else {
+					a = parseInt(draftArray[i][j]);
 				}
-				let a = parseInt(draftArray[i][diff]);
 				tempSum += a;
-				console.log(a, length);
 			}
+			tempSum += commonNumber;
+			console.log(tempSum);
 			if (sum < tempSum) {
 				sum = tempSum;
 			}
-			console.log(tempSum);
-			// console.log(tempSum);
 		}
 		console.log(sum);
 	}
-	SumOfRightDiagnolElements();
+	SumOfLeftDiagnolElements();
 }
 processLineByLine();
