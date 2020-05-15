@@ -21,7 +21,7 @@ async function processLineByLine() {
 		//pushing value to our arrray.
 		//console.log(`Line from file: ${line}`);
 	}
-	console.log('The given array is ', draftArray); //Displaying...
+	//console.log('The given array is ', draftArray); //Displaying...
 	NoOfLevels = draftArray[0][0];
 	//We know that first line indicates depth
 	let ArrayOfGreaterNumbers = []; // This is our array to be displayed after our operation
